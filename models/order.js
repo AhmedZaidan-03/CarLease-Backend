@@ -4,7 +4,6 @@ const Schema= mongoose.Schema;
 const orderSchema= new Schema ({
     name: String,
     email: String,
-    user_id: String,
     car_märke: String,
     car_model: String,
     price: Number,

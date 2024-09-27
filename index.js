@@ -83,6 +83,35 @@ app.post("/login", async(req,res)=>{
 
 
 
+app.get("/getCars", async(req,res)=>{
+    const cars=  await car_2.find();
+    res.json(cars);
+
+})
+
+
+
+app.post("/storeOrder", async(req,res)=>{
+    const order= new order_2();
+    order.name= req.body.name;
+    order.email= req.body.email;
+    order.car_märke= req.body.marke;
+    order.car_model= req.body.modell;
+    order.price= req.body.price;
+    order.start_date= req.body.start_date;
+    order.end_date= req.body.end_date;
+    const id= uuidv4();
+    order.rent_id= id;
+
+    try{
+        await order.save();
+        res.status(200).send();
+    }catch(error){
+        res.send(error).send();
+    }
+
+})
+
 
 
 app.listen(4000, ()=>{
